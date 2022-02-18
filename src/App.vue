@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <h1>TaschenRechner</h1>
+    <img src="./assets/operations.png" alt="" width="140px">
     <div id="calcContainer">
       <Display :text="calcText"></Display>
-      <ButtonPad @pressed="handleButton"></ButtonPad>
-      <button v-on:click="clearAll" class="clear">clear</button>
+      <ButtonPad @pressed="handleButton" @clear="clearAll"></ButtonPad>
     </div>
   </div>
 </template>
@@ -31,10 +30,12 @@ export default {
     };
   },
   methods: {
+    // clears the state and screen
     clearAll() {
       this.state = { ...clearState(this.state) };
       this.calcText = printText(this.state);
     },
+    // triggers on button press
     handleButton(symb) {
       this.state = { ...doOperations(this.state, symb) };
       this.calcText = printText(this.state);
@@ -48,6 +49,7 @@ export default {
   padding: 0;
   margin: 0;
   outline: none;
+  border: none;
   box-sizing: border-box;
 }
 #app,
@@ -65,24 +67,17 @@ export default {
   min-height: 100vh;
 }
 #calcContainer {
-  padding: 20px;
-  max-width: 400px;
-  background-color: darkred;
+  margin-top: 20px;
+  padding: 10px;
+  width: 280px;
+  background-color: #0d1b2a;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: black 0px 5px 15px;
 }
 h1 {
-  margin: 30px 0;
+  margin-bottom: 30px;
 }
-.clear {
-  margin-top: 20px;
-  margin-right: 20px;
-  height: 50px;
-  width: 100px;
-  align-self: flex-end;
-  font-size: 25px;
-  background-color: aquamarine;
-  font-weight: bold;
-  border-radius: 5px;
+button{
+  cursor: pointer;
 }
 </style>

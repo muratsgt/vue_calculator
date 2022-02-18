@@ -37,12 +37,25 @@ export function calculate(first, second, symbol) {
  * @param {String} figure
  * @returns updated number
  */
-export function addComma(numStr, figure) {
+export function addComma(numStr, symb) {
     if (numStr.includes('.')) {
         // when comma already exists
         return numStr;
     }
-    return numStr + figure;
+    return numStr + symb;
+}
+
+/**
+ *
+ * @param {String} number
+ * @param {Number} figure
+ * @returns updated number
+ */
+export function addFigure(numStr, figure) {
+    if (numStr === '0') {
+        return figure.toString();
+    }
+    return numStr + figure.toString();
 }
 
 /**
@@ -56,9 +69,9 @@ export function printText(state) {
     }
     let text = state?.firstNum;
     if (state?.secondNum && state?.operator) {
-        text = `${state?.firstNum} ${state?.operator} ${state?.secondNum}`
+        text = `${state?.firstNum}\n${state?.operator}\n${state?.secondNum}`
     } else if (state?.operator) {
-        text = `${state?.firstNum} ${state?.operator}`
+        text = `${state?.firstNum}\n${state?.operator}\n`
     }
     return text.replaceAll(".", ",");
 }
@@ -105,7 +118,7 @@ export function doOperations(state, symbol) {
             return state;
         }
         // symbol is a number; add number to the end of secondNum
-        state.secondNum = state.secondNum + symbol.toString();
+        state.secondNum = addFigure(state.secondNum, symbol)
         return state;
     }
 
@@ -128,7 +141,7 @@ export function doOperations(state, symbol) {
         return state;
     }
     // symbol is a number
-    state.firstNum = state.firstNum + symbol.toString();
+    state.firstNum = addFigure(state.firstNum, symbol);
     return state;
 }
 

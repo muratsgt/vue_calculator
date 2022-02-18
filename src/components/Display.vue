@@ -15,19 +15,20 @@ export default {
 
 <style scoped>
 .calcDisplay {
-  margin: 20px 0;
-  padding: 10px;
-  font-size: 26px;
-  font-weight: bold;
-  width: 300px;
-  height: 60px;
+  text-align: right;
+  color: white;
+  margin-bottom: 10px;
+  padding: 20px;
+  font-size: 24px;
+  width: 100%;
+  height: 120px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
-  background-color: white;
+  background-color: #415a77;
   border-radius: 5px;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: pre-wrap;
 }
 </style>
