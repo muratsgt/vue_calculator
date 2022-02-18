@@ -4,6 +4,7 @@
     <div id="calcContainer">
       <Display :text="calcText"></Display>
       <ButtonPad @pressed="handleButton"></ButtonPad>
+      <button v-on:click="clearAll" class="clear">clear</button>
     </div>
   </div>
 </template>
@@ -11,6 +12,7 @@
 <script>
 import ButtonPad from "./components/ButtonPad.vue";
 import Display from "./components/Display.vue";
+import { printText, doOperations, clearState } from "./helpers/calculate.js";
 
 export default {
   name: "App",
@@ -20,18 +22,22 @@ export default {
   },
   data: function () {
     return {
-      firstNum: null,
-      secondNum: null,
-      operator: null,
-      calcText: null,
+      state: {
+        firstNum: '0',
+        secondNum: null,
+        operator: null,
+      },
+      calcText: printText(this.state),
     };
   },
   methods: {
-    handleButton(symbol) {
-      console.log("symbol:", symbol);
-      if(isNaN(symbol)){
-        this.calcText = symbol;
-      }
+    clearAll() {
+      this.state = { ...clearState(this.state) };
+      this.calcText = printText(this.state);
+    },
+    handleButton(symb) {
+      this.state = { ...doOperations(this.state, symb) };
+      this.calcText = printText(this.state);
     },
   },
 };
@@ -44,29 +50,39 @@ export default {
   outline: none;
   box-sizing: border-box;
 }
+#app,
+#calcContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 #calcContainer {
   padding: 20px;
   max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background-color: darkred;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-h1{
+h1 {
   margin: 30px 0;
+}
+.clear {
+  margin-top: 20px;
+  margin-right: 20px;
+  height: 50px;
+  width: 100px;
+  align-self: flex-end;
+  font-size: 25px;
+  background-color: aquamarine;
+  font-weight: bold;
+  border-radius: 5px;
 }
 </style>

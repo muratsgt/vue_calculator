@@ -17,9 +17,9 @@ export default {
 .calcDisplay {
   margin: 20px 0;
   padding: 10px;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: bold;
-  width: 95%;
+  width: 300px;
   height: 60px;
   display: flex;
   flex-direction: row;
@@ -27,5 +27,7 @@ export default {
   justify-content: flex-end;
   background-color: white;
   border-radius: 5px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 </style>

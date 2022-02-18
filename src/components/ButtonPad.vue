@@ -12,7 +12,7 @@
     <button v-on:click="buttonPressed(2)">2</button>
     <button v-on:click="buttonPressed(3)">3</button>
     <button v-on:click="buttonPressed('*')">*</button>
-    <button v-on:click="buttonPressed(',')">,</button>
+    <button v-on:click="buttonPressed('.')">,</button>
     <button v-on:click="buttonPressed(0)">0</button>
     <button v-on:click="buttonPressed('=')">=</button>
     <button v-on:click="buttonPressed('/')">/</button>
