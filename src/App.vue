@@ -11,7 +11,7 @@
 <script>
 import ButtonPad from "./components/ButtonPad.vue";
 import Display from "./components/Display.vue";
-import { printText, doOperations, clearState } from "./helpers/calculate.js";
+import { printText, doOperations, clearState } from "./helpers/helper.js";
 
 export default {
   name: "App",
